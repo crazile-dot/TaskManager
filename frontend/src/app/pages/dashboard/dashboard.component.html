@@ -7,7 +7,7 @@
       </h1>
 
       <div class="project-menu">
-        <a class="project-menu-item" *ngFor="let project of projects" [routerLink]="['/dashboard', project.id]" routerLinkActive="is-active">
+        <a class="project-menu-item" *ngFor="let project of projects" (click)="onProjectClick(project.id)" [routerLink]="['/dashboard', project.id]" routerLinkActive="is-active">
           <p>{{ project.title }}</p>
         </a>
 
@@ -15,6 +15,26 @@
 
       <button class="button is-primary has-text-white" routerLink="/new-project">+ New Project</button>
 
+    </div>
+
+    <div class="project-details-container has-background-light">
+      <div class="top-bar">
+        <h1 class="title has-text-primary">
+          Project details
+        </h1>
+      </div>  
+      <div class="project-details">
+          <a class="project-details-item" *ngFor="let project of projects" [routerLink]="['/dashboard/' + selectedProjectId]" routerLinkActive="is-active">
+            <div *ngIf="project.id === selectedProjectId">
+              <div *ngIf="value">
+                Title: {{ project.title }} <br> 
+                Expiration: {{ project.expiration }} <br>
+                Description: {{ project.description }} <br> 
+                Attachment: {{ project.attachment }} <br>
+              </div>
+            </div>
+          </a> 
+      </div>
     </div>
 
     <div class="project-detail-container has-background-light">
@@ -30,10 +50,10 @@
             </div>
             <div class="dropdown-menu" id="dropdown-menu4" role="menu">
               <div class="dropdown-content">
-                <a [routerLink]="['/edit-list', selectedListId]" class="dropdown-item">
+                <a [routerLink]="['/edit-project/' + selectedProjectId]" class="dropdown-item">
                   Edit
                 </a>
-                <a (click)="onDeleteListClick()" class="dropdown-item has-text-danger">
+                <a (click)="onDeleteProjectClick(selectedProjectId)" class="dropdown-item has-text-danger">
                   Delete
                 </a>
               </div>
@@ -41,36 +61,6 @@
           </div>
       
         </div>
-
-        <!-- Story Elements -->
-       <!-- <div class="story" *ngFor="let story of stories">
-          <div class="story-text">
-            <p>{{ task.title }}</p>
-          </div>
-          <div class="task-buttons">
-
-            <button class="button" [routerLink]="['/stories', selectedStoryId, 'edit-task', task.id]">
-              <div class="icon">
-                <i class="fas fa-edit"></i>
-              </div>
-            </button>
-
-            <button class="button is-danger" (click)="onDeleteTaskClick(task.id)" style="margin-left: 10px;">
-              <div class="icon">
-                <i class="fas fa-trash"></i>
-              </div>
-            </button>
-
-          </div>
-        </div>
-
-        <h3 class="empty-state-text" *ngIf="stories.length === 0">There are no tasks here! Click the add button to create
-          a new task.</h3>
-
-        <button routerLink="./new-story" class="circle-add-button button is-primary">
-          <img src="../../../assets/plus-icon.svg" class="has-text-white">
-        </button>
-      </div>-->
 
       <div *ngIf="selectedProjectId">
         <button class="button is-primary has-text-white" [routerLink]="['/dashboard/' + selectedProjectId + '/stories']">Stories</button>

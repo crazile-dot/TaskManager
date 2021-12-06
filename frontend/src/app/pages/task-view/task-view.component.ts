@@ -59,4 +59,10 @@ export class TaskViewComponent implements OnInit {
 
   }
 
+  onDeletStoryClick() {
+    this.taskService.deleteStory(this.selectedStoryId, this. selectedProjectId).subscribe((res: any) => {
+      this.router.navigate(['/dashboard/' + this.selectedStoryId + '/stories']);
+    })
+  }
+
 }

@@ -25,12 +25,11 @@
         </div>  
         <div class="story-details">
             <a class="story-details-item" *ngFor="let story of stories" [routerLink]="['/dashboard/' + selectedProjectId + '/stories/', story.id]" routerLinkActive="is-active">
-              <div *ngIf="selectedStoryId">
+              <div *ngIf="story.id === selectedStoryId">
                 <div *ngIf="value">
                   Title: {{ story.title }} <br> 
                   Expiration: {{ story.expiration }} <br>
                   Description: {{ story.description }} <br> 
-                  Project: {{ story.project_name }} <br>
                   Score: {{ story.score }} <br>
                   State: {{ story.story_state }} <br>
                   Priority: {{ story.priority }}
@@ -56,10 +55,10 @@
             </div>
             <div class="dropdown-menu" id="dropdown-menu4" role="menu">
               <div class="dropdown-content">
-                <a [routerLink]="['/edit-list', selectedListId]" class="dropdown-item">
+                <a [routerLink]="['/edit-story', selectedStoryId]" class="dropdown-item">
                   Edit
                 </a>
-                <a (click)="onDeleteListClick()" class="dropdown-item has-text-danger">
+                <a (click)="onDeleteStoryClick(selectedStoryId)" class="dropdown-item has-text-danger">
                   Delete
                 </a>
               </div>

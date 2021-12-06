@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   projects: Project[] = [];
   stories: Story[] = [];
   
+  value: boolean = false;
   selectedProjectId: string;
 
   ngOnInit() {
@@ -25,12 +26,6 @@ export class DashboardComponent implements OnInit {
       (params: Params) => {
         if (params.board_id) {
           this.selectedProjectId = params.board_id;
-         /* this.taskService.getStoriesList(params.board_id).subscribe((stories: Story[]) => {
-            this.stories = stories;
-          })
-        } else {
-          this.stories = undefined;
-        }*/
       }
     })
 
@@ -40,13 +35,15 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  /*onStoryClick(story: Story) {
-    // we want to set the story to completed
-    this.taskService.storyComplete(story).subscribe(() => {
-      // the task has been set to completed successfully
-      console.log("Completed successfully!");
-      story.story_state = !story.story_state;
+  onProjectClick(projectId: string) {
+    this.value = true;
+    this.selectedProjectId = projectId;
+  }
+
+  onDeletProjectClick() {
+    this.taskService.deleteProject(this.selectedProjectId).subscribe((res: any) => {
+      this.router.navigate(['/dashboard']);
     })
-  }*/
+  }
 
 }

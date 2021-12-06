@@ -13,9 +13,6 @@ export class TaskService {
 
   apiGatewayUri = 'https://t2sels74kg.execute-api.us-east-1.amazonaws.com/prod';
 
-  signIn() {
-    return this.webReqService.call('');
-  }
 
   getTasks(storyId: string, projectId: string) {
     return this.webReqService.get(this.apiGatewayUri + '/boardapi/' + projectId + '/storyapi/' + storyId + '/detailtaskapi?story=' + storyId);
@@ -42,22 +39,28 @@ export class TaskService {
     return this.webReqService.post(this.apiGatewayUri + '/boardapi', {title, expiration, description, attachment});
   }
 
-  updateList(id: string, title: string) {
-    // We want to send a web request to update a list
-    return this.webReqService.patch(`lists/${id}`, { title });
+  updateProject(id: string, title: string, expiration: string, description: string, attachment: string) {
+    return this.webReqService.put(this.apiGatewayUri + '/boardapi' + id, { title, expiration, description, attachment });
   }
 
-  updateTask(listId: string, taskId: string, title: string) {
-    // We want to send a web request to update a list
-    return this.webReqService.patch(`lists/${listId}/tasks/${taskId}`, { title });
+  updateStory(id: string, title: string, expiration: string, description: string, project: string, score: string, story_state: string, priority: string) {
+    return this.webReqService.put(this.apiGatewayUri + '/boardapi' + project + '/storyapi/' + id, { title, expiration, description, project, score, story_state, priority });
+  }
+
+  updateTask(title: string, task_state: string, project: string, story: string) {
+    return this.webReqService.put(this.apiGatewayUri + '/boardapi/' + project + '/storyapi/' + story + '/taskapi/', { title, task_state, project, story });
+  }
+
+  deleteProject(id: string) {
+    return this.webReqService.delete(this.apiGatewayUri + '/boardapi/' + id);
+  }
+
+  deleteStory(storyId: string, projectId: string) {
+    return this.webReqService.delete(this.apiGatewayUri + '/boardapi/' + projectId + '/storyapi/' + storyId);
   }
 
   deleteTask(listId: string, taskId: string) {
     return this.webReqService.delete(`lists/${listId}/tasks/${taskId}`);
-  }
-
-  deleteList(id: string) {
-    return this.webReqService.delete(`lists/${id}`);
   }
 
   getTasksList(storyId: string) {
@@ -75,7 +78,7 @@ export class TaskService {
   }*/
 
   taskComplete(task: Task) {
-    return this.webReqService.patch(`lists/${task.story_id}/tasks/${task._id}`, {
+    return this.webReqService.put(`lists/${task.story_id}/tasks/${task._id}`, {
       completed: !task.task_state
     });
   }

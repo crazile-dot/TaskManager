@@ -16,10 +16,6 @@ export class WebRequestService {
     //this.ROOT_URL = 'localhost:3000';
   }
 
-  call (uri: string) {
-    return this.http.get('serverlessscrumboard.auth.us-east-1.amazoncognito.com');
-  }
-
   get(uri: string) {
     return this.http.get(uri);
   }
@@ -28,12 +24,12 @@ export class WebRequestService {
     return this.http.post(uri, payload, {'headers': {'Content-Type': 'application/json',}});
   }
 
-  patch(uri: string, payload: Object) {
-    return this.http.patch(`${this.ROOT_URL}/${uri}`, payload);
+  put(uri: string, payload: Object) {
+    return this.http.put(uri, payload);
   }
 
   delete(uri: string) {
-    return this.http.delete(`${this.ROOT_URL}/${uri}`);
+    return this.http.delete(uri);
   }
 
   login(email: string, password: string) {
