@@ -1,6 +1,8 @@
 export class Task {
     _id: string;
-    _listId: string;
     title: string;
-    completed: boolean;
+    expiration: string;
+    attachment: string;
+    task_state: boolean;
+    story_id: string;
 }

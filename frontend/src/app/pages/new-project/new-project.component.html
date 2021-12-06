@@ -1,0 +1,18 @@
+<div class="centered-content">
+  <div class="modal-box">
+    <h1 class="title">
+      Create a new project
+    </h1>
+
+    <input #listTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter project name...">
+    <input #listExpirationInput class="input has-background-light is-medium" type="text" placeholder="Enter expiration date...">
+    <input #listDescriptionInput class="input has-background-light is-medium" type="text" placeholder="Enter description...">
+    <input #listAttachmentInput class="input has-background-light is-medium" type="text" placeholder="Enter attachment...">
+
+    <br><br>
+    <div class="buttons is-right">
+      <button class="button is-medium" routerLink="/dashboard">Cancel</button>
+      <button class="button is-primary has-text-white is-medium" (click)="createProject(listTitleInput.value, listExpirationInput.value, listDescriptionInput.value, listAttachmentInput.value)">Create</button>
+    </div>   
+  </div>
+</div>

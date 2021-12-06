@@ -8,16 +8,24 @@ export class WebRequestService {
 
   readonly ROOT_URL;
 
+  public headers: Headers = new Headers({
+    'Content-Type': 'application/json'
+  })
+
   constructor(private http: HttpClient) {
-    this.ROOT_URL = 'http://localhost:3000';
+    //this.ROOT_URL = 'localhost:3000';
+  }
+
+  call (uri: string) {
+    return this.http.get('serverlessscrumboard.auth.us-east-1.amazoncognito.com');
   }
 
   get(uri: string) {
-    return this.http.get(`${this.ROOT_URL}/${uri}`);
+    return this.http.get(uri);
   }
 
   post(uri: string, payload: Object) {
-    return this.http.post(`${this.ROOT_URL}/${uri}`, payload);
+    return this.http.post(uri, payload, {'headers': {'Content-Type': 'application/json',}});
   }
 
   patch(uri: string, payload: Object) {

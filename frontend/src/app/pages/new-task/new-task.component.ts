@@ -12,19 +12,22 @@ export class NewTaskComponent implements OnInit {
 
   constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router) { }
 
-  listId: string;
+  selectedStoryId: string;
+  selectedProjectId: string;
   
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
-        this.listId = params['listId'];
+        console.log(params);
+        this.selectedProjectId = params.board_id;
+        this.selectedStoryId = params.story_id;
       }
     )
   }
 
-  createTask(title: string) {
-    this.taskService.createTask(title, this.listId).subscribe((newTask: Task) => {
-      this.router.navigate(['../'], { relativeTo: this.route });
+  createTask(title: string, expiration: string, attachment: string, task_state: string) {
+    this.taskService.createTask(title, expiration, attachment, task_state, this.selectedStoryId, this.selectedStoryId).subscribe((task: Task) => {
+      this.router.navigate(['/dashboard/' + this.selectedProjectId + '/stories/' + this.selectedStoryId], { relativeTo: this.route });
     })
   }
 

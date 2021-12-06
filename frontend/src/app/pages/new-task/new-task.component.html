@@ -5,10 +5,14 @@
     </h1>
 
     <input #taskTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter task name...">
+    <input #taskExpirationInput class="input has-background-light is-medium" type="text" placeholder="Enter task expiration date...">
+    <input #taskAttachmentInput class="input has-background-light is-medium" type="text" placeholder="Enter attachment...">
+    <input #taskStateInput class="input has-background-light is-medium" type="text" placeholder="Enter task state...">
+
     <br><br>
     <div class="buttons is-right">
-      <button class="button is-medium" routerLink="/">Cancel</button>
-      <button class="button is-primary has-text-white is-medium" (click)="createTask(taskTitleInput.value)">Create</button>
+      <button class="button is-medium" [routerLink]="['/dashboard/' + selectedProjectId + '/stories/' + selectedStoryId]">Cancel</button>
+      <button class="button is-primary has-text-white is-medium" (click)="createTask(taskTitleInput.value, taskExpirationInput.value, taskAttachmentInput.value, taskStateInput.value)">Create</button>
     </div>
 
     

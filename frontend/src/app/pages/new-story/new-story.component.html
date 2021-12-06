@@ -1,0 +1,21 @@
+<div class="centered-content">
+  <div class="modal-box">
+    <h1 class="title">
+      Create a new story
+    </h1>
+
+    <input #storyTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter story name...">
+    <input #storyExpirationInput class="input has-background-light is-medium" type="text" placeholder="Enter expiration date...">
+    <input #storyDescriptionInput class="input has-background-light is-medium" type="text" placeholder="Enter description...">
+    <input #storyScoreInput class="input has-background-light is-medium" type="text" placeholder="Enter score...">
+    <input #storyStateInput class="input has-background-light is-medium" type="text" placeholder="Enter state...">
+    <input #storyPriorityInput class="input has-background-light is-medium" type="text" placeholder="Enter priority...">
+
+
+    <br><br>
+    <div class="buttons is-right">
+      <button class="button is-medium" [routerLink]="['/dashboard/' + selectedProjectId + '/stories']">Cancel</button>
+      <button class="button is-primary has-text-white is-medium" (click)="createStory(storyTitleInput.value, storyExpirationInput.value, storyDescriptionInput.value, selectedProjectId, storyScoreInput.value, storyStateInput.value, storyPriorityInput.value)">Create</button>
+    </div>   
+  </div>
+</div>

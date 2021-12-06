@@ -3,22 +3,45 @@
 
     <div class="sidebar has-background-white">
       <h1 class="title has-text-primary">
-        Lists
+        Stories
       </h1>
 
-      <div class="list-menu">
-        <a class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists', list._id]" routerLinkActive="is-active">
-          <p>{{ list.title }}</p>
+      <div class="story-menu">
+        <a class="story-menu-item" *ngFor="let story of stories" (click)="onStoryClick(story.id)" [routerLink]="['/dashboard/' + selectedProjectId + '/stories/', story.id]" routerLinkActive="is-active">
+          <p>{{ story.title }}</p>
         </a>
 
       </div>
 
-      <button class="button is-primary has-text-white" routerLink="/new-list">+ New List</button>
+      <button class="button is-primary has-text-white" [routerLink]="['/new-story/' + selectedProjectId]">+ New Story</button>
 
     </div>
 
+    <div class="story-details-container has-background-light">
+        <div class="top-bar">
+          <h1 class="title has-text-primary">
+            Story details
+          </h1>
+        </div>  
+        <div class="story-details">
+            <a class="story-details-item" *ngFor="let story of stories" [routerLink]="['/dashboard/' + selectedProjectId + '/stories/', story.id]" routerLinkActive="is-active">
+              <div *ngIf="selectedStoryId">
+                <div *ngIf="value">
+                  Title: {{ story.title }} <br> 
+                  Expiration: {{ story.expiration }} <br>
+                  Description: {{ story.description }} <br> 
+                  Project: {{ story.project_name }} <br>
+                  Score: {{ story.score }} <br>
+                  State: {{ story.story_state }} <br>
+                  Priority: {{ story.priority }}
+                </div>
+              </div>
+            </a> 
+        </div>
+      </div>
+
     <div class="task-list-container has-background-light">
-      <div *ngIf="tasks">
+      <div *ngIf="stories">
         <div class="top-bar">
           <h1 class="title has-text-primary">
             Tasks
@@ -45,17 +68,17 @@
         </div>
 
         <!-- Task Elements -->
-        <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{ 'completed': task.completed }">
+        <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{ 'completed': task.task_state }" [routerLink]="['/dashboard/' + selectedProjectId + '/stories/', selectedStoryId]">
           <div class="task-text">
             <p>{{ task.title }}</p>
           </div>
           <div class="task-buttons">
 
-            <button class="button" [routerLink]="['/lists', selectedListId, 'edit-task', task._id]">
+            <!--<button class="button" [routerLink]="['/lists', selectedListId, 'edit-task', task._id]">
               <div class="icon">
                 <i class="fas fa-edit"></i>
               </div>
-            </button>
+            </button>-->
 
             <button class="button is-danger" (click)="onDeleteTaskClick(task._id)" style="margin-left: 10px;">
               <div class="icon">
@@ -69,16 +92,20 @@
         <h3 class="empty-state-text" *ngIf="tasks.length === 0">There are no tasks here! Click the add button to create
           a new task.</h3>
 
-        <button routerLink="./new-task" class="circle-add-button button is-primary">
+        <!--<button routerLink="./new-task" class="circle-add-button button is-primary">
           <img src="../../../assets/plus-icon.svg" class="has-text-white">
-        </button>
+        </button>-->
       </div>
 
       <div *ngIf="!tasks">
-        <h3 class="empty-state-text">Please select a list from the sidebar</h3>
+        <h3 class="empty-state-text">Please select a story from the sidebar</h3>
       </div>
 
     </div>
+
+    <!--<div *ngIf="selectedStoryId">
+      <button class="button is-primary has-text-white" [routerLink]="['/dashboard/' + selectedProjectId + '/stories/' + selectedStoryId]">Stories</button>
+    </div>-->
 
   </div>
 </div>

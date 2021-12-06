@@ -4,22 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Params } from '@angular/router';
 import { Story } from 'src/app/models/story.model';
-import { Task } from 'src/app/models/task.model';
+import { Project } from 'src/app/models/project.model';
 
 @Component({
-  selector: 'app-task-view',
-  templateUrl: './task-view.component.html',
-  styleUrls: ['./task-view.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class TaskViewComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
   constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router) { }
 
-  tasks: Task[] = [];
+  projects: Project[] = [];
   stories: Story[] = [];
   
-  value: boolean = false;
-  selectedStoryId: string;
   selectedProjectId: string;
 
   ngOnInit() {
@@ -36,27 +34,19 @@ export class TaskViewComponent implements OnInit {
       }
     })
 
-    this.taskService.getStories(this.selectedProjectId).subscribe((stories: Story[]) => {
-      this.stories = stories['body'];
+    this.taskService.getProjects().subscribe((projects: Project[]) => {
+      this.projects = projects;
+
     })
   }
 
-  onTaskClick(task: Task) {
+  /*onStoryClick(story: Story) {
     // we want to set the story to completed
-    this.taskService.taskComplete(task).subscribe(() => {
+    this.taskService.storyComplete(story).subscribe(() => {
       // the task has been set to completed successfully
       console.log("Completed successfully!");
-      task.task_state = !task.task_state;
+      story.story_state = !story.story_state;
     })
-  }
-
-  onStoryClick(storyId: string) {
-    this.value = true;
-    this.selectedStoryId = storyId;
-    this.taskService.getTasks(this.selectedStoryId, this.selectedProjectId).subscribe((tasks: Task[]) => {
-      this.tasks = tasks['body'];
-    })
-
-  }
+  }*/
 
 }
