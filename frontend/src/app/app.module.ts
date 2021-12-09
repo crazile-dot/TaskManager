@@ -31,7 +31,7 @@ import { EditStoryComponent } from './pages/edit-story/edit-story.component';
     HomepageComponent,
     DashboardComponent,
     NewProjectComponent,
-    EditStoryComponent,
+    EditStoryComponent
   ],
   imports: [
     BrowserModule,

@@ -4,13 +4,12 @@
       Edit task
     </h1>
 
-    <input #taskTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter task name...">
-    <input #taskStateInput class="input has-background-light is-medium" type="text" placeholder="Enter task state...">
+    <input #taskTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter task name..." value="{{ task.title }}">
 
     <br><br>
     <div class="buttons is-right">
       <button class="button is-medium" [routerLink]="['/dashboard/' + selectedProjectId + '/stories/' + selectedStoryId]">Cancel</button>
-      <button class="button is-primary has-text-white is-medium" (click)="updateTask(taskTitleInput.value, taskStateInput.value)">Save</button>
+      <button class="button is-primary has-text-white is-medium" (click)="updateTaskName(taskTitleInput.value)">Save</button>
     </div>
 
     

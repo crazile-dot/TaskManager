@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Story } from 'src/app/models/story.model';
 import { TaskService } from 'src/app/task.service';
 
 @Component({
@@ -13,19 +14,24 @@ export class EditStoryComponent implements OnInit {
 
   projectId: string;
   storyId: string;
+  story: Story;
 
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
         this.projectId = params.board_id;
         this.storyId = params.story_id;
+        this.taskService.getStoryById(this.projectId, this.storyId).subscribe((story: Story) => {
+          this.story = story['body'];
+          console.log(this.story);
+        })
       }
     )
   }
 
   updateStory(title: string, expiration: string, description: string, score: string, state: string, priority: string) {
     this.taskService.updateStory(this.storyId, title, expiration, description, this.projectId, score, state, priority).subscribe(() => {
-      this.router.navigate(['/dashboard/' + this.projectId + '/stories', this.projectId]);
+      this.router.navigate(['/dashboard/' + this.projectId + '/stories/', this.storyId]);
     })
   }
 

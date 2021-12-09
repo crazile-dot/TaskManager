@@ -4,16 +4,16 @@
       Edit story
     </h1>
 
-    <input #storyTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter story name...">
-    <input #storyExpirationInput class="input has-background-light is-medium" type="text" placeholder="Enter expiration date...">
-    <input #storyDescriptionInput class="input has-background-light is-medium" type="text" placeholder="Enter description...">
-    <input #storyScoreInput class="input has-background-light is-medium" type="text" placeholder="Enter score...">
-    <input #storyStateInput class="input has-background-light is-medium" type="text" placeholder="Enter state...">
-    <input #storyPriorityInput class="input has-background-light is-medium" type="text" placeholder="Enter priority...">
+    <input #storyTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter story name..." value="{{story.title}}">
+    <input #storyExpirationInput class="input has-background-light is-medium" type="text" placeholder="Enter expiration date..." value="{{story.expiration}}">
+    <input #storyDescriptionInput class="input has-background-light is-medium" type="text" placeholder="Enter description..." value="{{story.description}}">
+    <input #storyScoreInput class="input has-background-light is-medium" type="text" placeholder="Enter score..." value="{{story.score}}">
+    <input #storyStateInput class="input has-background-light is-medium" type="text" placeholder="Enter state..." value="{{story.state}}">
+    <input #storyPriorityInput class="input has-background-light is-medium" type="text" placeholder="Enter priority..." value="{{story.priority}}">
 
     <br><br>
     <div class="buttons is-right">
-      <button class="button is-medium" [routerLink]="['/dashboard/' + selectedProjectId + '/stories/' + selectedStoryId]">Cancel</button>
+      <button class="button is-medium" [routerLink]="['/dashboard/' + projectId + '/stories/' + storyId]">Cancel</button>
       <button class="button is-primary has-text-white is-medium" (click)="updateStory(storyTitleInput.value, storyExpirationInput.value, storyDescriptionInput.value, storyScoreInput.value, storyStateInput.value, storyPriorityInput.value)">Save</button>
     </div>
 

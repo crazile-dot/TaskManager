@@ -25,9 +25,8 @@ export class NewStoryComponent implements OnInit {
   }
 
   
-  createStory(title: string, expiration: string, description: string, projectId: string, score: string, story_state: string, priority: string) {
-    this.taskService.createStory(title, expiration, description, projectId, score, story_state, priority).subscribe((story: Story) => {
-      console.log(story.title);
+  createStory(title: string, expiration: string, description: string, score: string, story_state: string, priority: string) {
+    this.taskService.createStory(title, expiration, description, this.selectedProjectId, score, story_state, priority).subscribe((story: Story) => {
       this.router.navigate(['/dashboard/' + this.selectedProjectId + '/stories']); 
     });
     

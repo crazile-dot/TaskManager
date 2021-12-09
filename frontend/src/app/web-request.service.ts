@@ -17,7 +17,7 @@ export class WebRequestService {
   }
 
   get(uri: string) {
-    return this.http.get(uri);
+    return this.http.get(uri, {'headers': {'Content-Type': 'application/json',}});
   }
 
   post(uri: string, payload: Object) {
@@ -26,6 +26,10 @@ export class WebRequestService {
 
   put(uri: string, payload: Object) {
     return this.http.put(uri, payload);
+  }
+
+  patch(uri: string, payload: Object) {
+    return this.http.patch(uri, payload);
   }
 
   delete(uri: string) {

@@ -24,42 +24,41 @@
         </h1>
       </div>  
       <div class="project-details">
-          <a class="project-details-item" *ngFor="let project of projects" [routerLink]="['/dashboard/' + selectedProjectId]" routerLinkActive="is-active">
-            <div *ngIf="project.id === selectedProjectId">
-              <div *ngIf="value">
-                Title: {{ project.title }} <br> 
-                Expiration: {{ project.expiration }} <br>
-                Description: {{ project.description }} <br> 
-                Attachment: {{ project.attachment }} <br>
-              </div>
-            </div>
-          </a> 
+        <a class="project-details-item" *ngFor="let project of temp" [routerLink]="['/dashboard/' + selectedProjectId]" routerLinkActive="is-active">
+          <div>
+            Title: {{ project.title }} <br> 
+            Expiration: {{ project.expiration }} <br>
+            Description: {{ project.description }} <br> 
+            Attachment: {{ project.attachment }} <br>
+          </div>
+        </a> 
       </div>
     </div>
 
     <div class="project-detail-container has-background-light">
       <div *ngIf="projects">
         <div class="top-bar">
-          <div class="dropdown is-hoverable is-right">
-            <div class="dropdown-trigger">
-              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                <span class="icon is-small">
-                  <i class="fas fa-cog" aria-hidden="true"></i>
-                </span>
-              </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-              <div class="dropdown-content">
-                <a [routerLink]="['/edit-project/' + selectedProjectId]" class="dropdown-item">
-                  Edit
-                </a>
-                <a (click)="onDeleteProjectClick(selectedProjectId)" class="dropdown-item has-text-danger">
-                  Delete
-                </a>
+          <div *ngIf="selectedProjectId"> 
+            <div class="dropdown is-hoverable is-right">
+              <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                  <span class="icon is-small">
+                    <i class="fas fa-cog" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                <div class="dropdown-content">
+                  <a [routerLink]="['/edit-project/' + selectedProjectId]" class="dropdown-item">
+                    Edit
+                  </a>
+                  <a (click)="onDeleteProjectClick(selectedProjectId)" class="dropdown-item has-text-danger">
+                    Delete
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-      
         </div>
 
       <div *ngIf="selectedProjectId">
