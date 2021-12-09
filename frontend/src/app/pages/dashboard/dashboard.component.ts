@@ -6,6 +6,7 @@ import { Params } from '@angular/router';
 import { Story } from 'src/app/models/story.model';
 import { Project } from 'src/app/models/project.model';
 import { Task } from 'src/app/models/task.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -75,6 +76,10 @@ export class DashboardComponent implements OnInit {
       });
     })
     
+  }
+
+  signOut() {
+    window.location.href = environment.logout;
   }
 
 }

@@ -93,6 +93,7 @@
           a new task.</h3>
 
         <button id="fixedbutton" class="button is-primary has-text-white" [routerLink]="['/dashboard']">Back </button>
+        <button id="logoutbutton" class="button is-primary has-text-white" (click)="signOut()">Logout</button>
 
         <div *ngIf="selectedStoryId">  
           <button [routerLink]="['/new-task/' + selectedProjectId + '/' + selectedStoryId]" class="circle-add-button button is-primary">
@@ -104,7 +105,6 @@
       <div *ngIf="!tasks">
         <h3 class="empty-state-text">Please select a story from the sidebar</h3>
       </div>
-
     </div>
 
   </div>

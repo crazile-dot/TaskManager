@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Params } from '@angular/router';
 import { Story } from 'src/app/models/story.model';
 import { Task } from 'src/app/models/task.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-task-view',
@@ -82,6 +83,10 @@ export class TaskViewComponent implements OnInit {
     this.taskService.deleteTask(this.selectedProjectId, this.selectedStoryId, taskId).subscribe((res: any) => {
       this.tasks = this.tasks.filter(val => val.id !== taskId);
     });
+  }
+
+  signOut() {
+    window.location.href = environment.logout;
   }
 
 }
