@@ -9,15 +9,17 @@ export const environment = {
   api_username: '1jh7qoet6h77qmu60po4oet1j2', 
   api_pwd: '1g2l58md4u5dp1kf3h0hh591akuub04f977l5a8vlot1bostb1o',
 
-  loginURL: 'https://serverlessscrumboard.auth.us-east-1.amazoncognito.com/login?client_id=1jh7qoet6h77qmu60po4oet1j2&response_type=code&scope=openid+profile&redirect_uri=https://d1106h0s3djptg.cloudfront.net/dashboard',
+  //loginURL: 'https://serverlessscrumboard.auth.us-east-1.amazoncognito.com/login?client_id=1jh7qoet6h77qmu60po4oet1j2&response_type=code&scope=openid+profile&redirect_uri=https://d1106h0s3djptg.cloudfront.net/dashboard',
 
-  redirectURL: 'https://d1106h0s3djptg.cloudfront.net/dashboard',
+  loginURL: 'https://serverlessscrumboard.auth.us-east-1.amazoncognito.com/login?client_id=1jh7qoet6h77qmu60po4oet1j2&response_type=code&scope=openid+profile&redirect_uri=https://d1mijvkhm5u4xd.cloudfront.net/dashboard',
+
+  redirectURL: 'https://d1mijvkhm5u4xd.cloudfront.net/dashboard',
 
   cognitoTokenURL: 'https://serverlessscrumboard.auth.us-east-1.amazoncognito.com/oauth2/token',
 
-  logout: 'https://serverlessscrumboard.auth.us-east-1.amazoncognito.com/logout?' +
-  'client_id=1jh7qoet6h77qmu60po4oet1j2' +
-  'logout_uri=https://d1106h0s3djptg.cloudfront.net/homepage'
+  logout: 'https://serverlessscrumboard.auth.us-east-1.amazoncognito.com/logout?client_id=1jh7qoet6h77qmu60po4oet1j2&logout_uri=https://d1mijvkhm5u4xd.cloudfront.net/homepage'
+
+  //logout: 'https://serverlessscrumboard.auth.us-east-1.amazoncognito.com/logout?client_id=1jh7qoet6h77qmu60po4oet1j2logout_uri=https://d1106h0s3djptg.cloudfront.net/homepage'
 };
 
 /*

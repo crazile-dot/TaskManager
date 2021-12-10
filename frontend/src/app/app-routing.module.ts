@@ -10,7 +10,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NewProjectComponent } from './pages/new-project/new-project.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/homepage', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'edit-project/:board_id', component: EditProjectComponent },
   { path: 'edit-story/:board_id/:story_id', component: EditStoryComponent },
   { path: 'edit-task/:board_id/:story_id/:task_id', component: EditTaskComponent },
