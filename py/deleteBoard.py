@@ -5,6 +5,8 @@ import boto3
 def lambda_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Board')
+    print(table)
+    print(dynamodb)
 
     try:
         table.delete_item(
