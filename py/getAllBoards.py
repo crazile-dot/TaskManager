@@ -9,6 +9,9 @@ def lambda_handler(event, context):
 
     table = dynamodb.Table("Board")
 
+    print(table)
+    print(dynamodb)
+
     try:
 
         response = table.scan()
